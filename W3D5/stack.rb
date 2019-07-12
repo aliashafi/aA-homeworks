@@ -1,5 +1,4 @@
 class Stack
-    attr_reader :stack
     def initialize
       # create ivar to store stack here!
       @stack = []
@@ -8,7 +7,7 @@ class Stack
 
     def push(el)
       # adds an element to the stack
-      self.stack.push(el)
+      stack.push(el) ## dont need self or @ bc of private
       el.dup ## return el because we dont want to reveal the stack! 
 
     end
@@ -20,11 +19,14 @@ class Stack
 
     def pop
       # removes one element from the stack
-      self.stack.pop
+      stack.pop
     end
 
     def peek
       # returns, but doesn't remove, the top element in the stack
-      self.stack.last
+      stack.last
     end
+
+    private 
+    attr_reader :store
   end
