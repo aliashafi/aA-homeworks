@@ -1,19 +1,35 @@
 class Queue
-    attr_reader :que
+    
     def initialize
         @que = []
     end
 
     def enqueue(el)
-        self.que.push(el)
+        que.unshift(el)
+        el.dup
     end
 
     def dequeue
-        self.que.pop
+        que.pop
     end
 
     def peek
-        self.que[-1]
+        que[0]
     end
+
+    def show
+        que.reverse.dup
+    end
+
+    def size
+        que.length
+    end
+
+    def empty?
+        que.empty?
+    end
+
+    private 
+    attr_reader :que
 
 end
