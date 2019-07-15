@@ -29,6 +29,10 @@ class Queue
         que.empty?
     end
 
+    def inspect
+        "#<Queue #{self.object_id}>"
+    end
+
     private 
     attr_reader :que
 
