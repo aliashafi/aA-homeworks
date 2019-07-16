@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :cups, :player1
+  attr_accessor :cups, :player1, :player2
 
   def initialize(name1, name2)
     all_cups = Array.new(14) {Array.new()}
@@ -40,7 +40,7 @@ class Board
     if self.player1 == current_player_name 
       side = 13
     end
-
+    next_pos = 0
     (1..rock_count).each do |stone|
       next_pos = (start_pos + stone) % self.cups.length
       if next_pos == side
@@ -49,6 +49,15 @@ class Board
         self.cups[next_pos] << :stone
       end
     end
+
+    render
+    next_turn(next_pos)
+    if self.cups[next_pos].empty?
+      return :switch
+    else
+      return next_pos
+    end
+    
 
 
   end
@@ -66,8 +75,16 @@ class Board
   end
 
   def one_side_empty?
+    self.cups[0...5].any? {|ele| ele.empty?} #|| self.cups[6...12].any? {|ele| ele.empty?}
   end
 
   def winner
+    if self.cups[6].length > self.cups[13].length
+      return self.player1
+    elsif self.cups[6].length < self.cups[13].length
+      return self.player2
+    else
+      return :draw
+    end
   end
 end
