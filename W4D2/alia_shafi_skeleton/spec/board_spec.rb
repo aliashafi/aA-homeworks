@@ -1,4 +1,4 @@
-drequire 'rspec'
+require 'rspec'
 require 'board'
 require 'spec_helper'
 
